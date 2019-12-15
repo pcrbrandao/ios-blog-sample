@@ -9,19 +9,27 @@
 import UIKit
 import Siesta
 
-class HomeViewModel {
+protocol HomeViewModelProtocol {
     
-    let tableViewSource: TableViewSource
-    let homeView: HomeViewProtocol
-    let baseAPI: Service
+}
+
+class HomeViewModel: HomeViewModelProtocol, ResourceObserver {
     
-    let url = "https://jsonplaceholder.typicode.com"
+    private let tableViewSource: TableViewSource
     
-    init(for homeView: HomeViewProtocol) {
-        self.tableViewSource = HomeTableViewSource(for: homeView.tableView)
-        self.homeView = homeView
-        self.baseAPI = Service(baseURL: url)
+    init(for homeView: HomeViewProtocol, posts: Resource, errorHandler: ErrorProtocol) {
+        self.tableViewSource = HomeTableViewSource(for: homeView.tableView, list: [])
         
-        
+        posts.addObserver(self)
+            .loadIfNeeded()?
+            .onFailure( { error in
+                errorHandler.handle(error)
+            })
+        posts.addObserver(homeView.statusOverlay)
+    }
+    
+    // MARK: - ResourceObserver protocol
+    func resourceChanged(_ resource: Resource, event: ResourceEvent) {
+        tableViewSource.list = resource.typedContent() ?? []
     }
 }

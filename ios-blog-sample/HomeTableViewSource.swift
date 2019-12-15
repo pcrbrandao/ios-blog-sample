@@ -12,20 +12,37 @@ enum HomeCellIdentifier {
     static let defaultCell = "defaultCell"
 }
 
-protocol TableViewSource: UITableViewDataSource, UITableViewDelegate { }
+protocol TableViewSource: UITableViewDataSource, UITableViewDelegate {
+    var list: [Post] { get set }
+}
 
 class HomeTableViewSource: NSObject, TableViewSource {
-    init(for tableView: UITableView) {
+    
+    private var tableView: UITableView
+    
+    init(for tableView: UITableView, list: [Post]) {
+        self.list = list
+        self.tableView = tableView
+        
         super.init()
-        tableView.delegate = self
-        tableView.dataSource = self
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
     }
+    
+    // MARK: TableViewSource
+    var list: [Post] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+    // MARK: - Table view delegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeCellIdentifier.defaultCell) else {
             return UITableViewCell()
         }
-        cell.textLabel?.text = "cell \(indexPath.item)"
+        cell.textLabel?.text = self.list[indexPath.row].title
         return cell
     }
     
@@ -36,6 +53,6 @@ class HomeTableViewSource: NSObject, TableViewSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return self.list.count
     }
 }

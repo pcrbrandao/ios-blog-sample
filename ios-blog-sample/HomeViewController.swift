@@ -7,19 +7,32 @@
 //
 
 import UIKit
+import Siesta
 
 protocol HomeViewProtocol {
     var tableView: UITableView! { get }
+    var statusOverlay: ResourceStatusOverlay { get }
 }
 
 class HomeViewController: UIViewController, HomeViewProtocol {
-
-    @IBOutlet weak var tableView: UITableView!
     
-    var homeViewModel: HomeViewModel!
+    private var homeViewModel: HomeViewModel!
     
+    // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        homeViewModel = HomeViewModel(for: self)
+        statusOverlay.embed(in: self)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        homeViewModel = HomeViewModel(for: self, posts: apiService.posts, errorHandler: OnloadError())
+    }
+    
+    override func viewDidLayoutSubviews() {
+        statusOverlay.positionToCoverParent()
+    }
+    
+    // MARK: - HomeViewProtocol
+    @IBOutlet weak var tableView: UITableView!
+    var statusOverlay = ResourceStatusOverlay()
 }
