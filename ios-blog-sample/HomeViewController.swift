@@ -8,20 +8,18 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+protocol HomeViewProtocol {
+    var tableView: UITableView! { get }
+}
+
+class HomeViewController: UIViewController, HomeViewProtocol {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var tableViewDelegate: HomeTableViewSource!
+    var homeViewModel: HomeViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableView()
-    }
-    
-    private func setupTableView() {
-        tableViewDelegate = HomeTableViewSource()
-        tableView.delegate = tableViewDelegate
-        tableView.dataSource = tableViewDelegate
+        homeViewModel = HomeViewModel(for: self)
     }
 }

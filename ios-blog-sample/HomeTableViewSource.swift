@@ -12,9 +12,13 @@ enum HomeCellIdentifier {
     static let defaultCell = "defaultCell"
 }
 
-class HomeTableViewSource: NSObject, UITableViewDelegate, UITableViewDataSource {
-    override init() {
-        // TODO: Setup sources
+protocol TableViewSource: UITableViewDataSource, UITableViewDelegate { }
+
+class HomeTableViewSource: NSObject, TableViewSource {
+    init(for tableView: UITableView) {
+        super.init()
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -34,6 +38,4 @@ class HomeTableViewSource: NSObject, UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
-    
-    
 }
