@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum HomeCellIdentifier {
+private enum HomeCellIdentifier {
     static let defaultCell = "defaultCell"
 }
 

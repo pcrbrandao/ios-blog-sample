@@ -10,25 +10,25 @@ import XCTest
 @testable import ios_blog_sample
 
 class ios_blog_sampleTests: XCTestCase {
+    var errorHandler: ErrorProtocol!
+    var localStorage: LocalStorageProtocol!
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        errorHandler = OnloadError()
+        localStorage = CoreDataStorage(errorHandler: errorHandler)
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testLocalStorageMustReturnAValidPostList() {
+        let posts = localStorage.posts()
+        print("Existem \(posts.count) post(s)")
+        XCTAssertNotNil(posts)
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testLocalStorageMustReturnABlankList() {
+        localStorage.deleteAllPosts()
+        XCTAssert(localStorage.posts().count == 0)
     }
-
 }

@@ -11,6 +11,8 @@
 		0088B2F623A5C34400386DD5 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0088B2F523A5C34400386DD5 /* APIService.swift */; };
 		0088B2F823A650FC00386DD5 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 0088B2F723A650FB00386DD5 /* Podfile */; };
 		0088B2FA23A67D3500386DD5 /* ErrorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0088B2F923A67D3500386DD5 /* ErrorProtocol.swift */; };
+		0088B30023A68B7100386DD5 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0088B2FF23A68B7100386DD5 /* LocalStorage.swift */; };
+		0088B30223A69E5800386DD5 /* ConnectivityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0088B30123A69E5800386DD5 /* ConnectivityProtocol.swift */; };
 		00A75F2F23A5A53A000A3173 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A75F2E23A5A53A000A3173 /* HomeViewModel.swift */; };
 		00BDFCD423A57FDA00548E35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BDFCD323A57FDA00548E35 /* AppDelegate.swift */; };
 		00BDFCD923A57FDA00548E35 /* ios_blog_sample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 00BDFCD723A57FDA00548E35 /* ios_blog_sample.xcdatamodeld */; };
@@ -47,6 +49,8 @@
 		0088B2F523A5C34400386DD5 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		0088B2F723A650FB00386DD5 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		0088B2F923A67D3500386DD5 /* ErrorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorProtocol.swift; sourceTree = "<group>"; };
+		0088B2FF23A68B7100386DD5 /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
+		0088B30123A69E5800386DD5 /* ConnectivityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityProtocol.swift; sourceTree = "<group>"; };
 		00A75F2E23A5A53A000A3173 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		00BDFCD023A57FDA00548E35 /* ios-blog-sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-blog-sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00BDFCD323A57FDA00548E35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +99,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0088B2FB23A6858C00386DD5 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				00BDFD0A23A58B6400548E35 /* HomeViewController.swift */,
+				00BDFD1023A58F0900548E35 /* HomeTableViewSource.swift */,
+				00A75F2E23A5A53A000A3173 /* HomeViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		0088B2FC23A6863D00386DD5 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				0088B2F523A5C34400386DD5 /* APIService.swift */,
+				0088B2FF23A68B7100386DD5 /* LocalStorage.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		0088B2FD23A6868C00386DD5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0088B2F323A5BE2000386DD5 /* PostModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0088B2FE23A686B600386DD5 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0088B2F923A67D3500386DD5 /* ErrorProtocol.swift */,
+				0088B30123A69E5800386DD5 /* ConnectivityProtocol.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		00BDFCC723A57FDA00548E35 = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +161,10 @@
 		00BDFCD223A57FDA00548E35 /* ios-blog-sample */ = {
 			isa = PBXGroup;
 			children = (
+				0088B2FE23A686B600386DD5 /* Helpers */,
+				0088B2FD23A6868C00386DD5 /* Models */,
+				0088B2FC23A6863D00386DD5 /* Repositories */,
+				0088B2FB23A6858C00386DD5 /* Home */,
 				00BDFCD323A57FDA00548E35 /* AppDelegate.swift */,
 				00BDFCDE23A57FDE00548E35 /* Preview Content */,
 				00BDFCDC23A57FDE00548E35 /* Assets.xcassets */,
@@ -128,12 +172,6 @@
 				00BDFD0623A5804200548E35 /* main.storyboard */,
 				00BDFCE423A57FDE00548E35 /* Info.plist */,
 				00BDFCD723A57FDA00548E35 /* ios_blog_sample.xcdatamodeld */,
-				00BDFD0A23A58B6400548E35 /* HomeViewController.swift */,
-				0088B2F523A5C34400386DD5 /* APIService.swift */,
-				00BDFD1023A58F0900548E35 /* HomeTableViewSource.swift */,
-				00A75F2E23A5A53A000A3173 /* HomeViewModel.swift */,
-				0088B2F323A5BE2000386DD5 /* PostModel.swift */,
-				0088B2F923A67D3500386DD5 /* ErrorProtocol.swift */,
 			);
 			path = "ios-blog-sample";
 			sourceTree = "<group>";
@@ -358,9 +396,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0088B30023A68B7100386DD5 /* LocalStorage.swift in Sources */,
 				00BDFCD423A57FDA00548E35 /* AppDelegate.swift in Sources */,
 				00BDFD1123A58F0900548E35 /* HomeTableViewSource.swift in Sources */,
 				0088B2FA23A67D3500386DD5 /* ErrorProtocol.swift in Sources */,
+				0088B30223A69E5800386DD5 /* ConnectivityProtocol.swift in Sources */,
 				00BDFCD923A57FDA00548E35 /* ios_blog_sample.xcdatamodeld in Sources */,
 				0088B2F423A5BE2000386DD5 /* PostModel.swift in Sources */,
 				00A75F2F23A5A53A000A3173 /* HomeViewModel.swift in Sources */,

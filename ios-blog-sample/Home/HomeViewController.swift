@@ -25,7 +25,10 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        homeViewModel = HomeViewModel(for: self, posts: apiService.posts, errorHandler: OnloadError())
+        let errorHandler = OnloadError()
+        let localStorage = CoreDataStorage(errorHandler: errorHandler)
+        homeViewModel = HomeViewModel(for: self, posts: apiService.posts,
+                                      errorHandler: LoadLocalHomeOnError(localStorage: localStorage), localStorage: localStorage)
     }
     
     override func viewDidLayoutSubviews() {
